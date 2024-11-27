@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>qquizapp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>qquizapp</h1>
+        </div>
+        <div class="header-center">
+            <input type="text" id="search" placeholder="Wyszukaj kategorię" onkeyup="wyszukajKategorie()">
+        </div>
+        <div class="header-right">
+            <button onclick="location.href='login.html'">Logowanie</button>
+            <button onclick="location.href='register.html'">Rejestracja</button>
+        </div>
+    </header>
+    <main>
+        <h2 class="centered">Kategorie</h2>
+        <div id="categories">
+            <div class="category" onclick="location.href='category-matematyka.html'">
+                <img src="icons/math.png" alt="Matematyka">
+                <span>Matematyka</span>
+            </div>
+            <div class="category" onclick="location.href='category-geografia.html'">
+                <img src="icons/geography.png" alt="Geografia">
+                <span>Geografia</span>
+            </div>
+            <div class="category" onclick="location.href='category-programowanie.html'">
+                <img src="icons/programming.png" alt="Programowanie">
+                <span>Programowanie</span>
+            </div>
+            <div class="category" onclick="location.href='category-sport.html'">
+                <img src="icons/sport.png" alt="Sport">
+                <span>Sport</span>
+            </div>
+            <div class="category" onclick="location.href='category-muzyka.html'">
+                <img src="icons/music.png" alt="Muzyka">
+                <span>Muzyka</span>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
