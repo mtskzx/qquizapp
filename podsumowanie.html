@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podsumowanie - qquizapp by mtskzx</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> <!-- Default to light theme -->
+    <header class="main-header">
+        <h1>Podsumowanie</h1>
+    </header>
+    <main>
+        <div class="summary-info">
+            <h2 id="summary-category"></h2>
+            <p id="summary-text"></p>
+            <p id="summary-percentage"></p> <!-- Add this line for percentage -->
+            <button class="return-button" onclick="goBack()">Powrót do kategorii</button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; mtskzx</p>
+    </footer>
+    <script>
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                category: params.get('category'),
+                correct: params.get('correct'),
+                total: params.get('total')
+            };
+        }
+
+        function displaySummary() {
+            const { category, correct, total } = getQueryParams();
+            const percentage = ((correct / total) * 100).toFixed(2); // Calculate percentage
+            document.getElementById('summary-category').innerText = `Kategoria: ${category}`;
+            document.getElementById('summary-text').innerText = `Twój wynik: ${correct} z ${total} (${percentage}%)`; // Display percentage in parentheses
+        }
+
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            displaySummary();
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

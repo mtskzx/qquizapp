@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>qquizapp by mtskzx</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1>Matematyka</h1>
+    </header>
+    <button class="back-button" onclick="location.href='index.html'">
+        <img src="icons/back.png" alt="Powrót">
+    </button>
+    <main>
+        <div class="category-info">
+            <img src="icons/math.png" alt="Matematyka">
+            <p>Matematyka to nauka o liczbach, strukturach, przestrzeniach i zmianach. Jest fundamentem wielu dziedzin nauki i technologii.</p>
+            <button class="start-quiz-button" onclick="startQuiz('math')">Rozpocznij quiz</button>
+        </div>
+        <div id="quiz-container" class="hidden">
+            <div id="question-container">
+                <p id="question"></p>
+                <div id="answers" class="answers-grid"></div>
+            </div>
+            <div id="timer-container">
+                <div id="timer-bar"></div> <!-- Loading bar for the timer -->
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; mtskzx</p>
+    </footer>
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
