@@ -362,3 +362,9 @@ footer {
     width: 100%;
     transition: width 0.1s linear;
 }
+
+#summary-text {
+    font-size: 24px; /* Increase font size */
+    font-weight: bold; /* Make the text bold */
+    margin-bottom: 10px; /* Add some margin below */
+}

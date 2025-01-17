@@ -28,105 +28,11 @@
                 <div id="timer-bar"></div>
             </div>
         </div>
-        <div id="summary-container" class="hidden">
-            <h2>Podsumowanie</h2>
-            <p id="summary-text"></p>
-            <button onclick="goBack()">Powrót do kategorii</button>
-        </div>
     </main>
     <footer>
         <p>&copy; mtskzx</p>
     </footer>
     <script src="questions.js"></script>
     <script src="script.js"></script>
-    <script>
-        let currentQuestionIndex = 0;
-        let selectedQuestions = [];
-        let timerInterval;
-
-        function startQuiz(category) {
-            document.querySelector('.category-info').classList.add('hidden');
-            document.getElementById('quiz-container').classList.remove('hidden');
-            selectedQuestions = getRandomQuestions(questions[category], 5);
-            currentQuestionIndex = 0;
-            showQuestion();
-        }
-
-        function getRandomQuestions(questions, num) {
-            return questions.sort(() => 0.5 - Math.random()).slice(0, num);
-        }
-
-        function showQuestion() {
-            if (currentQuestionIndex < selectedQuestions.length) {
-                const questionData = selectedQuestions[currentQuestionIndex];
-                document.getElementById('question').innerText = questionData.question;
-                const answersContainer = document.getElementById('answers');
-                answersContainer.innerHTML = '';
-                questionData.answers.forEach(answer => {
-                    const button = document.createElement('button');
-                    button.innerText = answer;
-                    button.classList.add('answer-button');
-                    button.onclick = () => checkAnswer(button, answer);
-                    answersContainer.appendChild(button);
-                });
-                startTimer();
-            } else {
-                endQuiz();
-            }
-        }
-
-        function checkAnswer(button, answer) {
-            const questionData = selectedQuestions[currentQuestionIndex];
-            questionData.userAnswer = answer;
-            if (answer === questionData.correct) {
-                button.classList.add('correct');
-            } else {
-                button.classList.add('incorrect');
-                document.querySelectorAll('.answer-button').forEach(btn => {
-                    if (btn.innerText === questionData.correct) {
-                        btn.classList.add('correct');
-                    }
-                });
-            }
-            clearInterval(timerInterval);
-            setTimeout(() => {
-                currentQuestionIndex++;
-                showQuestion();
-            }, 1000);
-        }
-
-        function startTimer() {
-            let timeLeft = 7;
-            const timerBar = document.getElementById('timer-bar');
-            timerBar.style.width = '100%';
-            clearInterval(timerInterval);
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                timerBar.style.width = `${(timeLeft / 7) * 100}%`;
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    document.querySelectorAll('.answer-button').forEach(btn => {
-                        if (btn.innerText === selectedQuestions[currentQuestionIndex].correct) {
-                            btn.classList.add('correct');
-                        }
-                    });
-                    setTimeout(() => {
-                        currentQuestionIndex++;
-                        showQuestion();
-                    }, 1000);
-                }
-            }, 1000);
-        }
-
-        function endQuiz() {
-            const correctAnswers = selectedQuestions.filter(q => q.userAnswer === q.correct).length;
-            const totalQuestions = selectedQuestions.length;
-            window.location.href = `podsumowanie.html?category=sport&correct=${correctAnswers}&total=${totalQuestions}`;
-        }
-
-        function goBack() {
-            window.location.href = 'index.html';
-        }
-    </script>
 </body>
 </html>

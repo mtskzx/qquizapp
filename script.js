@@ -98,15 +98,33 @@ function checkAnswer(button, answer) {
 function endQuiz() {
     const correctAnswers = selectedQuestions.filter(q => q.userAnswer === q.correct).length;
     const totalQuestions = selectedQuestions.length;
-    window.location.href = `podsumowanie.html?category=matematyka&correct=${correctAnswers}&total=${totalQuestions}`;
+    window.location.href = `podsumowanie.html?correct=${correctAnswers}&total=${totalQuestions}`;
 }
 
 function goBack() {
     window.location.href = 'index.html';
 }
 
+function getQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        category: params.get('category'),
+        correct: params.get('correct'),
+        total: params.get('total')
+    };
+}
+
+function displaySummary() {
+    const { correct, total } = getQueryParams();
+    const percentage = ((correct / total) * 100).toFixed(2); // Calculate percentage
+    document.getElementById('summary-text').innerText = `Twój wynik: ${correct} z ${total} (${percentage}%)`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Ensure startQuiz function is accessible
     window.startQuiz = startQuiz;
     // Removed applyStoredTheme call
+    if (document.getElementById('summary-text')) {
+        displaySummary();
+    }
 });
